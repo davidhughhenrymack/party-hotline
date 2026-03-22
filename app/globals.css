@@ -1,0 +1,171 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0b;
+  --panel: rgba(19, 19, 24, 0.92);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text: #f5f5f7;
+  --muted: #a2a2ad;
+  --accent: #ffb347;
+  --accent-soft: rgba(255, 179, 71, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, rgba(255, 179, 71, 0.15), transparent 38%),
+    linear-gradient(180deg, #121219 0%, #08080a 100%);
+  color: var(--text);
+  font-family:
+    ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.flyer-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.flyer-page-empty {
+  color: var(--muted);
+  text-align: center;
+}
+
+.flyer-image {
+  display: block;
+  width: min(100%, 960px);
+  height: auto;
+  max-height: calc(100vh - 32px);
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.page-shell {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 56px 0 72px;
+  display: grid;
+  gap: 24px;
+}
+
+.hero-card,
+.secondary-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  padding: 28px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.eyebrow,
+.detail-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-top: 12px;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 0.96;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+.lede {
+  max-width: 56ch;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.details-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.details-grid article,
+.message-preview {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.details-grid strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.message-preview {
+  margin-top: 16px;
+}
+
+.message-preview p {
+  margin-top: 10px;
+  color: #f7e4c5;
+  line-height: 1.7;
+}
+
+.schedule-list {
+  margin: 18px 0 0;
+  padding-left: 20px;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.api-note {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+}
+
+code {
+  color: var(--accent);
+  font-family:
+    ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding-top: 20px;
+  }
+
+  .hero-card,
+  .secondary-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+}
