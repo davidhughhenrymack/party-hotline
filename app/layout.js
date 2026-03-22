@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Party Hotline",
+  title: "SEASONAL PRODUCE",
   description: "Twilio-powered party line deployed on Vercel.",
 };
 
