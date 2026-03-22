@@ -1,10 +1,16 @@
 import "./globals.css";
 
+const siteUrl = "https://www.seasonalproduce.club";
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "SEASONAL PRODUCE",
   description:
     "Seasonal Produce party line. Text for the next party location, date, and sunset start time.",
   applicationName: "SEASONAL PRODUCE",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
@@ -16,9 +22,10 @@ export const metadata = {
       "Text the party line to get the next party location, date, and sunset start time.",
     type: "website",
     siteName: "SEASONAL PRODUCE",
+    url: siteUrl,
     images: [
       {
-        url: "/og_image.png",
+        url: `${siteUrl}/og_image.png`,
         width: 1024,
         height: 536,
         alt: "Seasonal Produce party artwork",
@@ -30,7 +37,7 @@ export const metadata = {
     title: "SEASONAL PRODUCE",
     description:
       "Text the party line to get the next party location, date, and sunset start time.",
-    images: ["/og_image.png"],
+    images: [`${siteUrl}/og_image.png`],
   },
   robots: {
     index: true,
