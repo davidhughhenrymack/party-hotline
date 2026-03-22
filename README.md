@@ -31,21 +31,15 @@ Minimal Next.js app for Vercel that:
    npm install
    ```
 
-2. Copy environment variables.
+2. Add your flyer PNGs to `public/party-flyers/`.
 
-   ```bash
-   cp .env.example .env.local
-   ```
-
-3. Add your flyer PNGs to `public/party-flyers/`.
-
-4. Start the dev server.
+3. Start the dev server.
 
    ```bash
    npm run dev
    ```
 
-5. Open `http://localhost:3000`
+4. Open `http://localhost:3000`
 
 ## Flyer storage
 
@@ -91,26 +85,12 @@ Recommended approach:
 - `GET /api/party` returns the current computed party details as JSON
 - `POST /api/twilio/sms` returns TwiML for Twilio incoming message webhooks
 
-## Environment variables
-
-Set these in Vercel and optionally in `.env.local` for local development:
-
-```text
-PARTY_VENUE=The Studio
-PARTY_CITY=Truckee
-PARTY_LATITUDE=39.32796
-PARTY_LONGITUDE=-120.18325
-PARTY_TIMEZONE=America/Los_Angeles
-```
-
-These are used for the SMS reply and for calculating sunset time.
-
 ## Deploy to Vercel
 
 1. Push this repo to GitHub, GitLab, or Bitbucket if it is not already remote.
 2. In Vercel, create a new project and import this repo.
 3. Keep the framework preset as Next.js.
-4. In the Vercel project settings, add the environment variables listed above.
+4. No environment variables are required for this project as currently written.
 5. Deploy the project.
 6. After deploy, open the Vercel domain and confirm the homepage shows the next flyer.
 7. Confirm `https://your-domain/api/party` returns JSON.
