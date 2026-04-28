@@ -4,9 +4,14 @@ Minimal Next.js app for Vercel that:
 
 - shows the next upcoming flyer PNG on the homepage
 - replies to inbound Twilio SMS messages with:
-  - the party location: `The Studio, Truckee`
+  - a subscription confirmation for inbound opt-in messages
+  - a friendly unsubscribe confirmation for `STOP`
+- exposes a compliance page at `/compliance` with the SMS opt-in and opt-out flow
+- formats party notification text with:
+  - the party location
   - the next party date from the configured schedule
   - the sunset start time for that date
+  - `STOP` unsubscribe instructions
 
 ## What you need
 
@@ -21,7 +26,8 @@ Minimal Next.js app for Vercel that:
 - It parses the date from each filename
 - It shows only the next upcoming flyer
 - Twilio sends inbound texts to `POST /api/twilio/sms`
-- The API responds with TwiML containing the party location, next party date, and sunset time
+- The API responds with TwiML confirming opt-in for regular inbound messages
+- The API responds with TwiML confirming opt-out for `STOP`
 
 ## Local development
 
@@ -110,11 +116,10 @@ Use HTTP `POST`.
 
 Recommended verification:
 
-1. Text the Twilio number.
-2. Make sure the reply includes:
-   - `The Studio, Truckee`
-   - the next party date
-   - the sunset-based start time
+1. Text `PARTY` to the Twilio number.
+2. Make sure the reply confirms the subscription and says `Reply STOP to unsubscribe.`
+3. Text `STOP` to the Twilio number.
+4. Make sure the reply confirms the unsubscribe and says the person can text `PARTY` to start again.
 
 ## How to update flyers later
 
