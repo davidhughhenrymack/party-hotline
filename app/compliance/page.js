@@ -1,4 +1,11 @@
-import { buildOptInReply, buildOptOutReply, OPT_IN_KEYWORD, SMS_PROGRAM_NAME } from "@/lib/sms";
+import {
+  OPT_IN_KEYWORD,
+  OPT_OUT_KEYWORD,
+  SMS_PROGRAM_NAME,
+  appendOptOutInstructions,
+  buildOptInReply,
+  buildOptOutReply,
+} from "@/lib/sms";
 
 export const metadata = {
   title: "SMS Compliance | SEASONAL PRODUCE",
@@ -10,8 +17,9 @@ export const metadata = {
 };
 
 const smsNumberLabel = "our published SMS number";
-const examplePartyNotification =
-  "The next party is at a neighborhood venue on June 21. It starts at sunset 8:30 PM. Reply STOP to hop off.";
+const examplePartyNotification = appendOptOutInstructions(
+  "The next party is at BRIDGE 5 on June 21. It starts at sunset 8:30 PM.",
+);
 
 function SmsMessage({ sender, variant, children }) {
   return (
@@ -57,7 +65,7 @@ export default function CompliancePage() {
               <strong>2. We confirm the subscription.</strong>
               <p>
                 The reply tells the person they are subscribed and gives the required
-                STOP instruction before any future party notices are sent.
+                {OPT_OUT_KEYWORD} instruction before any future party notices are sent.
               </p>
               <SmsMessage sender="P" variant="partyline">
                 {buildOptInReply()}
@@ -67,7 +75,7 @@ export default function CompliancePage() {
               <strong>3. Every notification includes opt-out language.</strong>
               <p>
                 Party messages are informational and end with a clear instruction to
-                reply <code>STOP</code> to unsubscribe.
+                reply <code>{OPT_OUT_KEYWORD}</code> to unsubscribe.
               </p>
               <SmsMessage sender="P" variant="partyline">
                 {examplePartyNotification}
@@ -80,20 +88,20 @@ export default function CompliancePage() {
           <span className="eyebrow">Opt-out flow</span>
           <div className="compliance-steps">
             <article>
-              <strong>1. A subscriber texts STOP.</strong>
+              <strong>1. A subscriber texts {OPT_OUT_KEYWORD}.</strong>
               <p>
                 A subscribed person can leave the text list at any time by replying{" "}
-                <code>STOP</code> to any party notification.
+                <code>{OPT_OUT_KEYWORD}</code> to any party notification.
               </p>
               <SmsMessage sender="Guest" variant="guest">
-                STOP
+                {OPT_OUT_KEYWORD}
               </SmsMessage>
             </article>
             <article>
               <strong>2. We remove them and confirm.</strong>
               <p>
-                When someone texts <code>STOP</code>, they are removed from the text
-                list and receive a friendly goodbye message.
+                When someone texts <code>{OPT_OUT_KEYWORD}</code>, they are removed
+                from the text list and receive a friendly goodbye message.
               </p>
               <SmsMessage sender="P" variant="partyline">
                 {buildOptOutReply()}
