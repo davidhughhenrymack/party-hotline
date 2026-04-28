@@ -129,6 +129,35 @@ h2 {
   justify-content: flex-end;
 }
 
+.privacy-hero {
+  min-height: 280px;
+}
+
+.privacy-updated {
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+.privacy-policy {
+  display: grid;
+  gap: 28px;
+}
+
+.privacy-policy article {
+  max-width: 72ch;
+}
+
+.privacy-policy h2 {
+  color: var(--text);
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+}
+
+.privacy-policy p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
 .compliance-section {
   padding: 18px 0;
 }
