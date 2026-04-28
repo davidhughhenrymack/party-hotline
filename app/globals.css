@@ -60,6 +60,17 @@ body {
   background: #000;
 }
 
+.subscribers-page {
+  --text: #f7f4ee;
+  --muted: #bdb7ad;
+  --accent: #b16cff;
+  --panel: rgba(18, 10, 28, 0.82);
+  --panel-border: rgba(177, 108, 255, 0.22);
+  min-height: 100vh;
+  color: var(--text);
+  background: #000;
+}
+
 .page-shell {
   width: min(960px, calc(100% - 32px));
   margin: 0 auto;
@@ -247,6 +258,181 @@ h2 {
   flex-direction: row-reverse;
 }
 
+.subscribers-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 56px 0 72px;
+  display: grid;
+  gap: 30px;
+}
+
+.subscribers-hero {
+  padding: 18px 0;
+}
+
+.subscriber-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.subscriber-stats article,
+.subscribers-card {
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  background: var(--panel);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.subscriber-stats article {
+  padding: 20px;
+}
+
+.subscriber-stats span,
+.subscribers-card-header span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.subscriber-stats strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 2rem;
+}
+
+.subscribers-card {
+  overflow: hidden;
+}
+
+.subscribers-card-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.subscribers-card-header p {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.subscriber-form {
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.subscriber-form label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.subscriber-form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.subscriber-form input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 13px 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  font: inherit;
+}
+
+.subscriber-form input::placeholder {
+  color: rgba(189, 183, 173, 0.72);
+}
+
+.subscriber-form button {
+  border: 0;
+  border-radius: 14px;
+  padding: 13px 16px;
+  color: var(--text);
+  background: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.subscriber-form-status {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.subscribers-table-wrap {
+  overflow-x: auto;
+}
+
+.subscribers-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.subscribers-table th,
+.subscribers-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(177, 108, 255, 0.14);
+}
+
+.subscribers-table th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.subscribers-table td {
+  color: var(--text);
+}
+
+.subscribers-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.subscriber-phone {
+  font-family:
+    ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-weight: 700;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status-pill-subscribed {
+  color: #efe5ff;
+  background: rgba(177, 108, 255, 0.28);
+}
+
+.status-pill-unsubscribed {
+  color: #d9d1c8;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.subscribers-empty {
+  padding: 24px 20px;
+  color: var(--muted);
+}
+
 .compliance-assurance h2 {
   margin-top: 12px;
   font-size: clamp(1.65rem, 3vw, 2.35rem);
@@ -285,5 +471,9 @@ code {
   .secondary-card {
     padding: 22px;
     border-radius: 20px;
+  }
+
+  .subscriber-form-row {
+    flex-direction: column;
   }
 }

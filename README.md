@@ -28,6 +28,7 @@ Minimal Next.js app for Vercel that:
 - Twilio sends inbound texts to `POST /api/twilio/sms`
 - The API responds with TwiML confirming opt-in for regular inbound messages
 - The API responds with TwiML confirming opt-out for `STOP`
+- Inbound phone numbers are stored in Neon Postgres for subscription state and future broadcasts
 
 ## Local development
 
@@ -91,12 +92,51 @@ Recommended approach:
 - `GET /api/party` returns the current computed party details as JSON
 - `POST /api/twilio/sms` returns TwiML for Twilio incoming message webhooks
 
+## Database
+
+This app uses Neon Postgres with Drizzle for schema management and migrations.
+
+Required environment variable:
+
+```text
+DATABASE_URL=
+```
+
+The app also accepts `NEON_DATABASE_URL`, `POSTGRES_URL`, `POSTGRES_PRISMA_URL`, `POSTGRES_URL_NON_POOLING`, or `DATABASE_URL_UNPOOLED` if that is the name Vercel/Neon provides.
+
+Database commands:
+
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:studio
+```
+
+Current tables:
+
+- `sms_subscribers` tracks phone numbers, subscription status, inbound message history, and opt-in/opt-out timestamps.
+- `sms_broadcasts` stores outbound broadcast records.
+- `sms_broadcast_deliveries` tracks the delivery state for each subscriber targeted by a broadcast.
+
+## Manual subscriber adds
+
+The `/subscribers` page can add a number that opted in somewhere else. It stores the number as `subscribed` and sends the same welcome text used by the SMS opt-in flow.
+
+Required Twilio environment variables:
+
+```text
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+```
+
+Set either `TWILIO_MESSAGING_SERVICE_SID` or `TWILIO_PHONE_NUMBER` as the sender.
+
 ## Deploy to Vercel
 
 1. Push this repo to GitHub, GitLab, or Bitbucket if it is not already remote.
 2. In Vercel, create a new project and import this repo.
 3. Keep the framework preset as Next.js.
-4. No environment variables are required for this project as currently written.
+4. Connect the project to Neon and make sure a database URL is available in the Vercel environment.
 5. Deploy the project.
 6. After deploy, open the Vercel domain and confirm the homepage shows the next flyer.
 7. Confirm `https://your-domain/api/party` returns JSON.
@@ -117,7 +157,7 @@ Use HTTP `POST`.
 Recommended verification:
 
 1. Text `PARTY` to the Twilio number.
-2. Make sure the reply confirms the subscription and says `Reply STOP to unsubscribe.`
+2. Make sure the reply confirms the subscription and includes the STOP opt-out instruction.
 3. Text `STOP` to the Twilio number.
 4. Make sure the reply confirms the unsubscribe and says the person can text `PARTY` to start again.
 
